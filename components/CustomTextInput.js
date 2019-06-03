@@ -1,0 +1,54 @@
+import React, { Component } from 'react'
+import { StyleSheet, TextInput} from 'react-native'
+
+const BLUE = "#428AF8"
+const LIGHT_GRAY = "#D3D3D3"
+
+class CustomTextInput extends Component {
+  state = {
+    isFocused: false
+  }
+
+  handleFocus = event => {
+    this.setState({ isFocused: true })
+
+    if (this.props.onFocus) {
+      this.props.onFocus(event)
+    }
+  }
+
+  handleBlur = event => {
+    this.setState({ isFocused: false })
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event)
+    }
+  }
+  
+  render() {
+    const { isFocused } = this.state
+
+    const { onFocus, onBlur, ...otherProps } = this.props
+    return(
+      <TextInput 
+        selectionColor={BLUE}
+        underlineColorAndroid={ isFocused ? BLUE : "#000"}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        style={styles.TextInput}
+        {...otherProps}
+      />
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  textInput: {
+    height: 40,
+    borderWidth: 1, 
+    borderColor: "#000", 
+    borderRadius: 7,
+  }
+})
+
+export default CustomTextInput

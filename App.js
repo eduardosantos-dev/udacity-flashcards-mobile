@@ -29,7 +29,7 @@ const RouteConfigs = {
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      tabBarLabel: 'Add Deck',
+      tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
     },
   },
