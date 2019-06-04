@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { white, gray } from '../utils/colors'
+import { connect } from 'react-redux';
 
-export default class DeckSummary extends React.Component {
+export class DeckSummary extends React.Component {
   render() {
-    const { deck } = this.props
+    const { deck, deckId } = this.props
     const { navigate } = this.props.navigation
     return (
-      <TouchableOpacity onPress={() => navigate('DeckDetail',{ deck })}>
+      <TouchableOpacity onPress={() => navigate('DeckDetail', { deckId })}>
         <View style={styles.container}>
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{deck.title}</Text>
           <Text style={{color: gray}}>{deck.questions ? deck.questions.length : 0} cards</Text>
@@ -29,3 +30,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   }
 });
+
+function mapStateToProps(decks, { deckId } ) {
+  return {
+    deck: decks[deckId]
+  }
+}
+
+export default connect(mapStateToProps)(DeckSummary)

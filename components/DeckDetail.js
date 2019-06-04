@@ -1,23 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { gray, white, black } from '../utils/colors'
+import { connect } from 'react-redux'
 
 export class DeckDetail extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    const { deck } = navigation.state.params
     return {
-      title: deck.title
+      title: 'Deck Details'
     }
   }
 
   render() {
-    const { deck } = this.props.navigation.state.params
+    const { deck } = this.props
+    const { navigate } = this.props.navigation
 
     return (
       <View style={styles.container}>
+        <Text>{JSON.stringify(this.props.deck)}</Text>
         <Text style={{ fontSize: 40, fontWeight: 'bold' }}>{deck.title}</Text>
         <Text style={{ fontSize: 20, color: gray }}>{deck.questions.length} cards</Text>
-        <TouchableOpacity style={styles.addCardBtn}>
+        <TouchableOpacity 
+          style={styles.addCardBtn}
+          onPress={() => navigate('AddCard', { deck })}>
           <Text style={[styles.btnText, {color: black}]}>
             Add Card
           </Text>
@@ -67,4 +71,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckDetail
+function mapStateToProps (decks, { navigation }) {
+  const { deckId } = navigation.state.params
+  console.log(decks)
+  return {
+    deck: decks[deckId]
+  }
+}
+
+export default connect(mapStateToProps)(DeckDetail)

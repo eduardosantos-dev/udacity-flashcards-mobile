@@ -4,7 +4,7 @@ const DECKS_STORAGE_KEY = 'FlashCards:decks'
 
 function setDummyData() {
   const dummyData = {
-    '0': {
+    'React': {
       title: 'React',
       questions: [
         {
@@ -17,7 +17,7 @@ function setDummyData() {
         }
       ]
     },
-    '1': {
+    'JavaScript': {
       title: 'JavaScript',
       questions: [
         {
@@ -26,7 +26,7 @@ function setDummyData() {
         }
       ]
     },
-    '2': {
+    'Redux': {
       title: 'Redux',
       questions: [
         {
@@ -51,17 +51,26 @@ function setDummyData() {
 
 export function getDecks() {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-    .then(() => setDummyData())
+    .then((results) => 
+      results === null 
+      ? setDummyData() 
+      : JSON.parse(results))
 }
 
 export function getDeck() {
 
 }
 
-export function saveDeckTitle() {
-
+export function submitDeck({ deck, key }) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+    [key]: deck
+  }))
 }
 
-export function addCardToDeck() {
-
+export function addCardToDeck({ card, key }) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+    [key]: {
+      questions: questions.concat(card)
+    }
+  }))
 }

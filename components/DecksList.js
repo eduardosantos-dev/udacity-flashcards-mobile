@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import DeckSummary from './DeckSummary'
 import { getDecks } from '../utils/api'
-import { connect } from 'react-redux';
-import { receiveDecks } from '../actions';
+import { connect } from 'react-redux'
+import { receiveDecks } from '../actions'
 
 export class DecksList extends React.Component {
   state = {
@@ -25,7 +25,7 @@ export class DecksList extends React.Component {
 
   renderItem = (item, decks) => {
     const deckId = item
-    return <DeckSummary deck={decks[deckId]} navigation={this.props.navigation} />
+    return <DeckSummary deck={decks[deckId]} deckId={deckId} navigation={this.props.navigation} />
   }
 
   render() {

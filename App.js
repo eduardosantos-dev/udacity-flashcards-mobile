@@ -2,7 +2,9 @@ import React from 'react'
 import { StyleSheet, StatusBar, View } from 'react-native'
 import DecksList from './components/DecksList'
 import DeckDetail from './components/DeckDetail'
+import DeckSummary from './components/DeckSummary'
 import AddDeck from './components/AddDeck'
+import AddCard from './components/AddCard'
 import { white, black } from './utils/colors'
 import { Constants } from 'expo'
 import { createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation'
@@ -61,6 +63,15 @@ const StackNavigator = createStackNavigator({
   Home: Tabs,
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: black
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
