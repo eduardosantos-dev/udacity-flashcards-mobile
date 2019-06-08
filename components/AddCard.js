@@ -5,6 +5,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { gray, white, black } from '../utils/colors'
 import { addCard } from '../actions'
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation'
+import { addCardToDeck } from '../utils/api';
 import uuid from "uuid"
 
 export class AddCard extends React.Component {
@@ -20,15 +22,20 @@ export class AddCard extends React.Component {
   }
 
   submit = () => {
-    const key = uuid.v4()
     const { deck } = this.props.navigation.state.params
+    const deckKey = deck.title
     const card = this.state
 
-    this.props.dispatch(addCard({
-      [key]: card
-    }, deck))
-  }
+    this.props.dispatch(addCard(card, deck))
+    
+    addCardToDeck(card, deck)
 
+    this.setState({
+      question: '',
+      answer: '' 
+    })
+  }
+  
   render() {
     return (
       <View style={styles.container}>
@@ -39,11 +46,14 @@ export class AddCard extends React.Component {
         <CustomTextInput
           style={{ fontSize: 20, width: 350, height: 50, marginTop: 30 }}
           onChangeText={(question) => this.setState({ question })}
-          placeholder='Question' />
+          value={this.state.question}
+          placeholder='Question' 
+          autoFocus={false} />
 
         <CustomTextInput
           style={{ fontSize: 20, width: 350, height: 50, marginTop: 30 }}
           onChangeText={(answer) => this.setState({ answer })}
+          value={this.state.answer}
           placeholder='Answer' />
 
         <TouchableOpacity

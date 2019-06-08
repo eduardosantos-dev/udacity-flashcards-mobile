@@ -16,8 +16,8 @@ export class AddDeck extends React.Component {
   }
 
   submit = () => {
-    const key = uuid.v4()
     const deck = this.state
+    const key = deck.title
 
     this.props.dispatch(addDeck({
       [key]: deck
