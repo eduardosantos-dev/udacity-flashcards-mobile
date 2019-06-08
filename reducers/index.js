@@ -13,12 +13,12 @@ function decks(state = {}, action) {
         ...action.deck
       }
     case ADD_CARD:
-      const { card, deck } = action
-
-      deck.questions = deck.questions.concat([card])
-
-      return {
-        ...state
+      return{
+        ...state,
+        [action.deck.title]: {
+          ...action.deck,
+          questions: action.deck.questions.concat(action.card)
+        }
       }
     default:
       return state

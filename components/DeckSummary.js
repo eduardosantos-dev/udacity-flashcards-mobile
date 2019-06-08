@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { white, gray } from '../utils/colors'
 import { connect } from 'react-redux';
+import CardCounter from './CardCounter'
 
 export class DeckSummary extends React.Component {
   render() {
@@ -11,7 +12,7 @@ export class DeckSummary extends React.Component {
       <TouchableOpacity onPress={() => navigate('DeckDetail', { deckId })}>
         <View style={styles.container}>
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{deck.title}</Text>
-          <Text style={{color: gray}}>{deck.questions ? deck.questions.length : 0} cards</Text>
+          <CardCounter deck={deck} style={{color: gray}}/>
         </View>
       </TouchableOpacity>
 
