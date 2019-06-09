@@ -5,12 +5,6 @@ import { connect } from 'react-redux'
 import { getDeck, getDecks } from '../utils/api'
 
 export class DeckDetail extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'Deck Details'
-    }
-  }
-
   render() {
     const { deck } = this.props
     const { navigate } = this.props.navigation
@@ -26,7 +20,10 @@ export class DeckDetail extends React.Component {
             Add Card
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.startQuizBtn}>
+        <TouchableOpacity 
+          disabled={deck.questions.length === 0} 
+          style={styles.startQuizBtn}
+          onPress={() => navigate('Quiz', { deck })}>
           <Text style={[styles.btnText, { color: white }]}>
             Start Quiz
           </Text>

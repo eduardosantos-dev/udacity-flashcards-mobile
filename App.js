@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, StatusBar, View } from 'react-native'
 import DecksList from './components/DecksList'
 import DeckDetail from './components/DeckDetail'
-import DeckSummary from './components/DeckSummary'
+import Quiz from './components/Quiz'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import { white, black } from './utils/colors'
@@ -59,24 +59,34 @@ const TabNavigatorConfig = {
 
 const Tabs = createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig)
 
+const navigationOptions = {
+  headerTintColor: white,
+  headerStyle: {
+    backgroundColor: black
+  }
+}
+
 const StackNavigator = createStackNavigator({
   Home: Tabs,
   DeckDetail: {
     screen: DeckDetail,
     navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: black
-      }
+      ...navigationOptions,
+      title: 'Deck Details'
     }
   },
   AddCard: {
     screen: AddCard,
     navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: black
-      }
+      ...navigationOptions,
+      title: 'Add Card'
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      ...navigationOptions,
+      title: 'Quiz'
     }
   }
 })

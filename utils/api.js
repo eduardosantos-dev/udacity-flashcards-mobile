@@ -71,7 +71,6 @@ export function submitDeck({ deck, key }) {
 
 export function addCardToDeck(card, deck) {
   const { questions } = deck
-  console.log(deck.title)
   AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
     [deck.title]: {
       questions: questions.concat(card)

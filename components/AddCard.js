@@ -5,9 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { gray, white, black } from '../utils/colors'
 import { addCard } from '../actions'
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation'
 import { addCardToDeck } from '../utils/api';
-import uuid from "uuid"
 
 export class AddCard extends React.Component {
   state = {
@@ -15,15 +13,8 @@ export class AddCard extends React.Component {
     answer: ''
   }
 
-  static navigationOptions = () => {
-    return {
-      title: 'Add Card'
-    }
-  }
-
   submit = () => {
     const { deck } = this.props.navigation.state.params
-    const deckKey = deck.title
     const card = this.state
 
     this.props.dispatch(addCard(card, deck))
