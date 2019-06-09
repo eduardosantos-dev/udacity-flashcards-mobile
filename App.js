@@ -94,7 +94,8 @@ const StackNavigator = createStackNavigator({
     screen: QuizScore,
     navigationOptions: {
       ...navigationOptions,
-      title: 'Score'
+      title: 'Score',
+      headerLeft: null,
     }
   }
 })

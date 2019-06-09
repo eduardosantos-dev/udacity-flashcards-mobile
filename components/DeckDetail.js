@@ -10,8 +10,8 @@ export class DeckDetail extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 40, fontWeight: 'bold' }}>{deck.title}</Text>
-        <CardCounter deck={deck} style={{color: gray, fontSize: 20}}/>
+        <Text style={styles.deckTitle}>{deck.title}</Text>
+        <CardCounter deck={deck} style={{ color: gray, fontSize: 20 }} />
         <TouchableOpacity
           style={styles.addCardBtn}
           onPress={() => navigate('AddCard', { deck })}>
@@ -19,8 +19,8 @@ export class DeckDetail extends React.Component {
             Add Card
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity 
-          disabled={deck.questions.length === 0} 
+        <TouchableOpacity
+          disabled={deck.questions.length === 0}
           style={styles.startQuizBtn}
           onPress={() => navigate('Quiz', { deck })}>
           <Text style={[styles.btnText, { color: white }]}>
@@ -64,6 +64,11 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
     fontWeight: 'bold'
+  },
+  deckTitle: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 });
 

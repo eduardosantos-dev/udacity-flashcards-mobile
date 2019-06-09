@@ -54,7 +54,8 @@ export class AddDeck extends React.Component {
           style={{ fontSize: 20, width: 350, height: 50, marginTop: 30 }}
           onChangeText={(title) => this.setState({ title })}
           value={this.state.title}
-          placeholder='Deck Title' />
+          placeholder='Deck Title' 
+          maxLength={30}/>
         <TouchableOpacity
           onPress={this.submit}
           style={[styles.submitButton, { marginTop: 30 }]}>

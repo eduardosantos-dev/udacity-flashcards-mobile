@@ -13,26 +13,43 @@ export class Quiz extends Component {
     }
   }
 
+  componentWillReceiveProps() {
+    this.resetQuiz()
+  }
+
+  resetQuiz = () => {
+    this.setState({
+      cardIndex: 0,
+      correctAnswers: 0
+    })
+    this.card.flip()
+  }
+
   showScore = () => {
     const { navigate } = this.props.navigation
     navigate('QuizScore', ({
       correctAnswers: this.state.correctAnswers,
-      deckLength: this.state.deckLength
+      deckLength: this.state.deckLength,
+      deck: this.props.navigation.state.params.deck
     }))
   }
 
   handleAnswerPress = (card, result) => {
-    const { cardIndex, deckLength } = this.state
+    const { cardIndex, deckLength, correctAnswers } = this.state
 
-    if (cardIndex < deckLength - 1) {
-      card.flip()
-      this.setState({
-        cardIndex: this.state.cardIndex + 1,
-        correctAnswers: this.state.correctAnswers + (result === 'correct' ? 1 : 0)
-      })
-    } else {
-      this.showScore()
-    }
+    this.setState({
+      correctAnswers: correctAnswers + (result === 'correct' ? 1 : 0)
+    }, () => {
+      if (cardIndex >= deckLength - 1) {
+        this.showScore()
+      } else {
+        card.flip()
+        this.setState({
+          cardIndex: this.state.cardIndex + 1,
+        })
+      }
+
+    })
   }
 
   componentDidMount = () => {
@@ -58,8 +75,8 @@ export class Quiz extends Component {
             <Text style={styles.label}>
               {questions && questions[cardIndex].question}
             </Text>
-            <Text style={[styles.label, {fontSize: 15}]}>
-              Tap to see the answer.
+            <Text style={[styles.label, { fontSize: 15 }]}>
+              Tap to show the answer.
             </Text>
           </TouchableOpacity>
 
@@ -122,10 +139,10 @@ const styles = StyleSheet.create({
   },
   label: {
     textAlign: `center`,
-    fontSize: 40,
+    fontSize: 30,
     color: white,
     backgroundColor: 'transparent',
-    padding: 25
+    padding: 15
   },
   answerButton: {
     alignItems: 'center',

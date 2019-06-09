@@ -21,6 +21,8 @@ export class AddCard extends React.Component {
 
     addCardToDeck(card, deck)
 
+    // Não retorna à tela do deck, permitindo assim inserir várias cartas mais rapidamente.
+    
     this.setState({
       question: '',
       answer: ''
@@ -42,13 +44,15 @@ export class AddCard extends React.Component {
           onChangeText={(question) => this.setState({ question })}
           value={this.state.question}
           placeholder='Question'
-          autoFocus={false} />
+          autoFocus={false} 
+          maxLength={100}/>
 
         <CustomTextInput
           style={{ fontSize: 20, width: 350, height: 50, marginTop: 30 }}
           onChangeText={(answer) => this.setState({ answer })}
           value={this.state.answer}
-          placeholder='Answer' />
+          placeholder='Answer' 
+          maxLength={100} />
 
         <TouchableOpacity
           onPress={this.submit}
