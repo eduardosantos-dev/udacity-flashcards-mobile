@@ -7,7 +7,6 @@ import { submitDeck } from '../utils/api'
 import uuid from "uuid"
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
-import { NavigationActions } from 'react-navigation'
 
 export class AddDeck extends React.Component {
   state = {
@@ -28,7 +27,7 @@ export class AddDeck extends React.Component {
       questions: []
     }))
 
-    this.toHome()
+    this.toDeckView(key)
 
     submitDeck({ key, deck })
 
@@ -38,10 +37,8 @@ export class AddDeck extends React.Component {
     })
   }
 
-  toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({
-      key: 'AddDeck'
-    }))
+  toDeckView = (key) => {
+    this.props.navigation.navigate('DeckDetail', ({deckId: key}))
   }
 
   render() {
