@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { gray, white, black } from '../utils/colors'
 import { connect } from 'react-redux'
-import { getDeck, getDecks } from '../utils/api'
 
 export class DeckDetail extends React.Component {
   render() {

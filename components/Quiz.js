@@ -8,20 +8,30 @@ export class Quiz extends Component {
     super(props)
     this.state = {
       cardIndex: 0,
-      deckLength: 0
+      deckLength: 0,
+      correctAnswers: 0
     }
   }
 
-  handleAnswerPress = (card) => {
+  showScore = () => {
+    const { navigate } = this.props.navigation
+    navigate('QuizScore', ({
+      correctAnswers: this.state.correctAnswers,
+      deckLength: this.state.deckLength
+    }))
+  }
+
+  handleAnswerPress = (card, result) => {
     const { cardIndex, deckLength } = this.state
 
     if (cardIndex < deckLength - 1) {
       card.flip()
       this.setState({
-        cardIndex: this.state.cardIndex + 1
+        cardIndex: this.state.cardIndex + 1,
+        correctAnswers: this.state.correctAnswers + (result === 'correct' ? 1 : 0)
       })
     } else {
-      showScore()
+      this.showScore()
     }
   }
 
@@ -57,13 +67,13 @@ export class Quiz extends Component {
                 {questions && questions[cardIndex].answer}
               </Text>
               <TouchableOpacity style={[styles.answerButton, { backgroundColor: '#008000' }]}
-                onPress={() => this.handleAnswerPress(this.card)}>
+                onPress={() => this.handleAnswerPress(this.card, 'correct')}>
                 <Text style={styles.btnText}>
                   Correct
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.answerButton, { backgroundColor: '#D4271B' }]}
-                onPress={() => this.handleAnswerPress(this.card)}>
+                onPress={() => this.handleAnswerPress(this.card, 'incorrect')}>
                 <Text style={styles.btnText}>
                   Incorrect
                 </Text>

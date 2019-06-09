@@ -3,6 +3,7 @@ import { StyleSheet, StatusBar, View } from 'react-native'
 import DecksList from './components/DecksList'
 import DeckDetail from './components/DeckDetail'
 import Quiz from './components/Quiz'
+import QuizScore from './components/QuizScore'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import { white, black } from './utils/colors'
@@ -87,6 +88,13 @@ const StackNavigator = createStackNavigator({
     navigationOptions: {
       ...navigationOptions,
       title: 'Quiz'
+    }
+  },
+  QuizScore: {
+    screen: QuizScore,
+    navigationOptions: {
+      ...navigationOptions,
+      title: 'Score'
     }
   }
 })
