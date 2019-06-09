@@ -58,6 +58,9 @@ export class Quiz extends Component {
             <Text style={styles.label}>
               {questions && questions[cardIndex].question}
             </Text>
+            <Text style={[styles.label, {fontSize: 15}]}>
+              Tap to see the answer.
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity activeOpacity={1} style={[styles.card, styles.card2]}
