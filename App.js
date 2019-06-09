@@ -12,6 +12,7 @@ import { createMaterialTopTabNavigator, createAppContainer, createStackNavigator
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import reducer from './reducers'
+import { setLocalNotification } from './utils/helpers'
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -103,6 +104,9 @@ const StackNavigator = createStackNavigator({
 const TabsContainer = createAppContainer(StackNavigator)
 
 export default class App extends React.Component {
+  componentDidMount () {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>

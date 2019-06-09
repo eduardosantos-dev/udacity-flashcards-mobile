@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import CardFlip from 'react-native-card-flip'
-import { white, black, lightPurp } from '../utils/colors'
+import { white } from '../utils/colors'
+import { clearLocalNotifications, setLocalNotification } from '../utils/helpers'
 
 export class Quiz extends Component {
   constructor(props) {
@@ -32,6 +33,9 @@ export class Quiz extends Component {
       deckLength: this.state.deckLength,
       deck: this.props.navigation.state.params.deck
     }))
+    
+    clearLocalNotifications()
+      .then(setLocalNotification)
   }
 
   handleAnswerPress = (card, result) => {
