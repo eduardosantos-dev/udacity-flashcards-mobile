@@ -22,7 +22,7 @@ export class AddCard extends React.Component {
     addCardToDeck(card, deck)
 
     // Não retorna à tela do deck, permitindo assim inserir várias cartas mais rapidamente.
-    
+
     this.setState({
       question: '',
       answer: ''
@@ -35,8 +35,8 @@ export class AddCard extends React.Component {
         style={styles.container}
         behavior="padding"
         keyboardVerticalOffset={315}>
-        <MaterialCommunityIcons name='cards-outline' style={{ fontSize: 150 }} />
-        <Text style={{ fontSize: 50, textAlign: 'center', margin: 30 }}>
+        <MaterialCommunityIcons name='cards-outline' style={{ fontSize: 100 }} />
+        <Text style={{ fontSize: 30, textAlign: 'center', margin: 30 }}>
           Create a new card!
         </Text>
         <CustomTextInput

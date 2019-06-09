@@ -33,7 +33,7 @@ export class Quiz extends Component {
       deckLength: this.state.deckLength,
       deck: this.props.navigation.state.params.deck
     }))
-    
+
     clearLocalNotifications()
       .then(setLocalNotification)
   }
@@ -70,18 +70,22 @@ export class Quiz extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.cardCounter}>{cardIndex + 1}/{this.state.deckLength}</Text>
         <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} duration={50}>
           <TouchableOpacity
             activeOpacity={1}
             style={[styles.card, styles.card1]}
             onPress={() => this.card.flip()} >
-            <Text style={styles.label}>
-              {questions && questions[cardIndex].question}
-            </Text>
-            <Text style={[styles.label, { fontSize: 15 }]}>
-              Tap to show the answer.
-            </Text>
+            <View style={styles.cardCounter}>
+              <Text style={styles.cardCounterLabel}>{cardIndex + 1}/{this.state.deckLength}</Text>
+            </View>
+            <View style={styles.questionView}>
+              <Text style={styles.label}>
+                {questions && questions[cardIndex].question}
+              </Text>
+              <Text style={[styles.label, { fontSize: 15 }]}>
+                Tap to show the answer.
+              </Text>
+            </View>
           </TouchableOpacity>
 
           <TouchableOpacity activeOpacity={1} style={[styles.card, styles.card2]}
@@ -166,10 +170,25 @@ const styles = StyleSheet.create({
     color: white
   },
   cardCounter: {
-    textAlign: 'center',
-    marginBottom: 30,
+    flex: 1,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: white,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    paddingBottom: 20,
+    height: 15,
+  },
+  cardCounterLabel: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: white,
+    padding: 20
+  },
+  questionView: { 
+    flex: 7, 
+    justifyContent: 'center' 
   }
 });
 

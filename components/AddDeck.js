@@ -47,7 +47,7 @@ export class AddDeck extends React.Component {
         behavior="padding" 
         keyboardVerticalOffset={250}>
         <MaterialCommunityIcons name='cards-outline' style={{ fontSize: 150 }} />
-        <Text style={{ fontSize: 50, textAlign: 'center', margin: 30 }}>
+        <Text style={{ fontSize: 30, textAlign: 'center', margin: 30 }}>
           What is the title of your new deck?
         </Text>
         <CustomTextInput

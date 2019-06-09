@@ -40,7 +40,7 @@ function setDummyData() {
         },
         {
           question: 'What is redux?',
-          answer: 'The componentDidMount lifecycle event'
+          answer: 'A predictable state container for JavaScript apps.'
         }
       ]
     },
@@ -51,6 +51,7 @@ function setDummyData() {
 }
 
 export function getDecks() {
+  //AsyncStorage.removeItem(DECKS_STORAGE_KEY)
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then((results) =>
       results === null
