@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import CustomTextInput from './CustomTextInput'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { gray, white, black } from '../utils/colors'
@@ -18,18 +18,21 @@ export class AddCard extends React.Component {
     const card = this.state
 
     this.props.dispatch(addCard(card, deck))
-    
+
     addCardToDeck(card, deck)
 
     this.setState({
       question: '',
-      answer: '' 
+      answer: ''
     })
   }
-  
+
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        keyboardVerticalOffset={315}>
         <MaterialCommunityIcons name='cards-outline' style={{ fontSize: 150 }} />
         <Text style={{ fontSize: 50, textAlign: 'center', margin: 30 }}>
           Create a new card!
@@ -38,7 +41,7 @@ export class AddCard extends React.Component {
           style={{ fontSize: 20, width: 350, height: 50, marginTop: 30 }}
           onChangeText={(question) => this.setState({ question })}
           value={this.state.question}
-          placeholder='Question' 
+          placeholder='Question'
           autoFocus={false} />
 
         <CustomTextInput
@@ -55,7 +58,7 @@ export class AddCard extends React.Component {
             Submit
           </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { gray, black, white, red } from '../utils/colors';
 import CustomTextInput from '../components/CustomTextInput'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { submitDeck } from '../utils/api'
-import uuid from "uuid"
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 
@@ -43,7 +42,10 @@ export class AddDeck extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView 
+        style={styles.container} 
+        behavior="padding" 
+        keyboardVerticalOffset={250}>
         <MaterialCommunityIcons name='cards-outline' style={{ fontSize: 150 }} />
         <Text style={{ fontSize: 50, textAlign: 'center', margin: 30 }}>
           What is the title of your new deck?
@@ -61,7 +63,7 @@ export class AddDeck extends React.Component {
             Submit
           </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
